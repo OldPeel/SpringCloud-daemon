@@ -12,7 +12,7 @@ node {
             steps {
                 script {
                     //引入SonarqubeScanner工具
-                    scannerHome = tool 'sonar-scanner'
+                    scannerHome = tool 'sonarqube-scanner'
                 }
                 //引入SonarQube的服务器环境
                 withSonarQubeEnv('sonarqube') {

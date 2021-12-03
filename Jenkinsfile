@@ -16,7 +16,7 @@ node {
                 //引入SonarQube的服务器环境                
                 withSonarQubeEnv('sonarqube') {
                     sh """                                              
-                        cd "${project_name}"
+                        cd ${project_name}
                         "${scannerHome}/bin/sonar-scanner"
                     """
                 }

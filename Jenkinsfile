@@ -11,16 +11,15 @@ node {
     stage('检测代码') {            
                 script {
                     //引入SonarqubeScanner工具
-                   def  scannerHome = tool 'sonarqube-scanner'
+                    scannerHome = tool 'sonarqube-scanner'
                 }
                 //引入SonarQube的服务器环境
                 echo "${project_name}" 
                 echo "${scannerHome}"
                 withSonarQubeEnv('sonarqube') {
-                    sh """ 
-                        echo "${project_name}"                      
-                        cd ${project_name}
-                        ${scannerHome}/bin/sonar-scanner
+                    sh """                                              
+                        cd "${project_name}"
+                        "${scannerHome}/bin/sonar-scanner"
                     """
                 }
         }

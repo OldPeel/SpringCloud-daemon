@@ -13,9 +13,7 @@ node {
                     //引入SonarqubeScanner工具
                     scannerHome = tool 'sonarqube-scanner'
                 }
-                //引入SonarQube的服务器环境
-                echo "${project_name}" 
-                echo "${scannerHome}"
+                //引入SonarQube的服务器环境                
                 withSonarQubeEnv('sonarqube') {
                     sh """                                              
                         cd "${project_name}"

@@ -8,8 +8,7 @@ node {
  	    checkout([$class: 'GitSCM', branches: [[name: "*/${branch}"]], extensions: [], userRemoteConfigs: [[credentialsId: "${git_auth}", url: "${git_url}"]]])
 	}
 
-    stage('检测代码') {
-            steps {
+    stage('检测代码') {            
                 script {
                     //引入SonarqubeScanner工具
                    def scannerHome = tool 'sonarqube-scanner'
@@ -22,6 +21,5 @@ node {
                         ${scannerHome}/bin/sonar-scanner
                     """
                 }
-            }
         }
 }

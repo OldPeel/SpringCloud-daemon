@@ -11,12 +11,12 @@ node {
     stage('检测代码') {            
                 script {
                     //引入SonarqubeScanner工具
-                   def scannerHome = tool 'sonarqube-scanner'
+                   def  scannerHome = tool 'sonarqube-scanner'
                 }
                 //引入SonarQube的服务器环境
                 withSonarQubeEnv('sonarqube') {
-                    sh """
-                        //拉取完代码后，我们的Sonarqube默认是在父工程的根目录下，但我们需要构建是是微服务，就需要先切入到对应组件的根目录，而这里用到的变量即是我们在前面配置任务中定义的
+                    sh """ 
+                        echo ${project_name}                      
                         cd ${project_name}
                         ${scannerHome}/bin/sonar-scanner
                     """

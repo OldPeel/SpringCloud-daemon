@@ -21,4 +21,8 @@ node {
                     """
                 }
         }
+    // 编译安装子工程至本地Maven仓库，其他微服务组件需要依赖于子工程，如无子工程其他组件也无法进行编译
+    stage('编译&安装子工程') {
+                sh "mvn -f tensquare_common clean install"
+        }
 }

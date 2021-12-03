@@ -17,7 +17,7 @@ node {
                 withSonarQubeEnv('sonarqube') {
                     sh """                                              
                         cd ${project_name}
-                        "${scannerHome}/bin/sonar-scanner"
+                        ${scannerHome}/bin/sonar-scanner
                     """
                 }
         }

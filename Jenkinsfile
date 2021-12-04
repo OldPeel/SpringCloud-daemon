@@ -28,7 +28,7 @@ node {
         }
     //编译并打包微服务组件
     stage('编译&打包微服务工程') {
-                echo ${project_name}
-                sh "mvn -f ${project_name} clean package"
+                echo "${project_name}"
+                sh "mvn -f "${project_name}" clean package"
         }
 }

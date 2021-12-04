@@ -20,9 +20,24 @@
     </dependencies>
     <build>
         <plugins>
+            <!-- 引入Spring-boot-maven 打包插件，解决打完的Jar依赖问题，实现高移植性 -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <!-- 引入dockerfile-maven插件帮助我们读取项目下的Dockerfile文件，并构成镜像-->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>1.3.6</version>
+                <!-- configuration该项是为dockerfile-maven插件声明一些配置项-->
+                <configuration>
+                    <repository>${project.artifactId}</repository>
+                    <!-- buildArgs项是为Dockerfile文件传递参数用的，类似于命令行下的 docker build [- -build-arg]-->
+                    <buildArgs>
+                        <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+                    </buildArgs>
+                </configuration>
             </plugin>
         </plugins>
     </build>

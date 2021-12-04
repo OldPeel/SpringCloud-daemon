@@ -8,14 +8,14 @@ node {
  	    checkout([$class: 'GitSCM', branches: [[name: "*/${branch}"]], extensions: [], userRemoteConfigs: [[credentialsId: "${git_auth}", url: "${git_url}"]]])
 	}
 /**
-    stage('检测代码') {            
+    stage('检测代码') {
                 script {
                     //引入SonarqubeScanner工具
                     scannerHome = tool 'sonarqube-scanner'
                 }
-                //引入SonarQube的服务器环境                
+                //引入SonarQube的服务器环境
                 withSonarQubeEnv('sonarqube') {
-                    sh """                                              
+                    sh """
                         cd ${project_name}
                         ${scannerHome}/bin/sonar-scanner
                     """
@@ -26,8 +26,10 @@ node {
     stage('编译&安装子工程') {
                 sh "mvn -f tensquare_common clean install"
         }
-    //编译并打包微服务组件    
+    //编译并打包微服务组件
+    /**
     stage('编译&打包微服务工程') {
                 sh "mvn -f ${project_name} clean package"
-        }        
+        }
+    */
 }

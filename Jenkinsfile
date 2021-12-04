@@ -27,9 +27,7 @@ node {
                 sh "mvn -f tensquare_common clean install"
         }
     //编译并打包微服务组件
-    /**
     stage('编译&打包微服务工程') {
                 sh "mvn -f ${project_name} clean package"
         }
-    */
 }

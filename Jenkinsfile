@@ -37,7 +37,7 @@ node {
                 sh "mvn -f tensquare_common clean install"
         }
     //微服务组件:编译&打包&生成镜像&镜像打标签片段
-    stage('微服务组件:编译&打包&生成镜像&镜像打标签') {
+    stage('微服务组件:编译&打包&生成镜像&镜像打标签&上传镜像&部署容器') {
                 sh "mvn -f '${project_name}' clean package dockerfile:build"
 
                 //定义镜像名称变量
@@ -57,5 +57,7 @@ node {
     		        //测试语句
     		        sh "echo 镜像上传成功"
 			    }
+			   // 部署容器
+			   sshPublisher(publishers: [sshPublisherDesc(configName: 'master_server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: "/opt/jenkins_shell/deploy.sh ${Harbor_url} ${project_name} ${Tag} ${project_port}", execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
         }
 }

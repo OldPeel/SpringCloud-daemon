@@ -10,6 +10,9 @@ def Tag = "latest"
 //定义镜像仓库的地址
 def Harbor_url = "192.168.230.202/tensquare/"
 
+//定义Harbor凭证ID
+def Harbor_auth = "d50001be-8759-4234-8e93-d58bc2dd699b"
+
 node {
     stage('拉取代码') {
  	    checkout([$class: 'GitSCM', branches: [[name: "*/${branch}"]], extensions: [], userRemoteConfigs: [[credentialsId: "${git_auth}", url: "${git_url}"]]])
@@ -42,5 +45,17 @@ node {
 
 			   //为镜像打上标签
 			   sh " docker tag ${ImageName} ${Harbor_url}${ImageName}"
+
+			   //登陆Harbor & 镜像上传
+			   withCredentials([usernamePassword(credentialsId: "${Harbor_auth}", passwordVariable: 'harbor_password', usernameVariable: 'harbor_username')]) {
+    		        //登陆Harbor
+    		        sh "docker login -u ${harbor_username} -p ${harbor_password} ${Harbor_url}"
+
+    		        //镜像上传
+    		        sh "docker push ${Harbor_url}${ImageName}"
+
+    		        //测试语句
+    		        sh "echo 镜像上传成功"
+			    }
         }
 }

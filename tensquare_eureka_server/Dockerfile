@@ -2,4 +2,4 @@ FROM openjdk:8-jdk-alpine
 ARG JAR_FILE
 COPY ${JAR_FILE} app.jar
 EXPOSE 10086
-CMD "sleep 10000"
+CMD " find / -name app.jar && java -jar /app.jar"

@@ -27,7 +27,7 @@ node {
                 sh "mvn -f tensquare_common clean install"
         }
     //微服务组件:编译&打包&生成镜像
-    stage('微服务组件:编译&打包&生成镜像') {
+    stage('微服务组件: 编译&打包&生成镜像') {
                 echo "${project_name}"
                 sh "mvn -f '${project_name}' clean package dockerfile:build"
         }

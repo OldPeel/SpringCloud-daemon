@@ -1,5 +1,5 @@
 FROM openjdk:8-jdk-alpine
 ARG JAR_FILE
-COPY ${JAR_FILE} app.jar
+COPY ${JAR_FILE} /tmp/app.jar
 EXPOSE 10086
-CMD " find / -name app.jar && java -jar app.jar"
+CMD "java -jar /tmp/app.jar"

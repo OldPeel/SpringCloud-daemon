@@ -13,6 +13,7 @@ def Harbor_url = "192.168.230.202/tensquare/"
 //定义Harbor凭证ID
 def Harbor_auth = "d50001be-8759-4234-8e93-d58bc2dd699b"
 
+
 node {
     stage('拉取代码') {
  	    checkout([$class: 'GitSCM', branches: [[name: "*/${branch}"]], extensions: [], userRemoteConfigs: [[credentialsId: "${git_auth}", url: "${git_url}"]]])
@@ -38,6 +39,7 @@ node {
         }
     //微服务组件:编译&打包&生成镜像&镜像打标签片段
     stage('微服务组件:编译&打包&生成镜像&镜像打标签&上传镜像&部署容器') {
+                sh " echo ${project.build.finalName} "
                 sh "mvn -f '${project_name}' clean package dockerfile:build"
 
                 //定义镜像名称变量

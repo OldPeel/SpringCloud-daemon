@@ -1,13 +1,5 @@
 FROM smartbooks/ubuntu1804-java8:1.0.0
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    openjdk-8-jdk \
-    curl \
-    vim \
-    net-tools \
-    && apt-get clean \
-    && echo "Asia/Shanghai" > /etc/timezone
-
 #Http Port
 #EXPOSE 8080
 

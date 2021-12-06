@@ -21,7 +21,7 @@ ENV LOG4J_DEBUG=true
 
 WORKDIR ${APP_HOME}
 
-COPY ../tensquare_admin_service/target/${APP_JAR} ${APP_HOME}
+COPY tensquare_admin_service/target/${APP_JAR} ${APP_HOME}
 
 RUN echo '#!/bin/bash \n\
 java -server \

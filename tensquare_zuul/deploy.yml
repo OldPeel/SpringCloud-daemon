@@ -1,0 +1,39 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zuul
+  labels:
+    app: zuul
+spec:
+  type: NodePort
+  ports:
+    - port: 10020
+      name: zuul
+      targetPort: 10020
+  selector:
+    app: zuul
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: zuul
+spec:
+  serviceName: "zuul"
+  replicas: 2
+  selector:
+    matchLabels:
+      app: zuul
+  template:
+    metadata:
+      labels:
+        app: zuul
+    spec:
+      imagePullSecrets:
+        - name: $SECRET_NAME
+      containers:
+        - name: zuul
+          image: $IMAGE_NAME
+          ports:
+            - containerPort: 10020
+  podManagementPolicy: "Parallel"

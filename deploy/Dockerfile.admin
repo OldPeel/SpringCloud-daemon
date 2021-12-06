@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM smartbooks/ubuntu1804-java8:1.0.0
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     openjdk-8-jdk \

@@ -1,2 +1,6 @@
 FROM openjdk:8-jdk-alpine
-CMD "java"
+ARG JAR_FILE
+RUN "echo ${JAR_FILE}"
+COPY ${JAR_FILE} app.jar
+EXPOSE 10086
+CMD " java -jar app.jar"

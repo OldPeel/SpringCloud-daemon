@@ -13,6 +13,8 @@
         <module>tensquare_common</module>
         <module>tensquare_eureka_server</module>
         <module>tensquare_admin_service</module>
+        <module>tensquare_gathering</module>
+        <module>tensquare_zuul</module>
     </modules>
 
     <parent>
@@ -68,5 +70,5 @@
     <build>
         <defaultGoal>clean</defaultGoal>
     </build>
-    
+
 </project>

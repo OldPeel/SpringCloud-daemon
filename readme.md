@@ -4,6 +4,6 @@
 
 ```bash
 
-./mk.sh
+./mk.sh 
 
 ```
